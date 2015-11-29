@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transliterate Chatino</title>
+<link rel=stylesheet href=css/style.css>
+<script src=fetch.js></script>
+<script src=digitalLinguistics.js></script>
+</head>
+
+<body>
+<header>
+<h1>Chatino Transliteration</h1>
+<span>Last updated: <date></date></span>
+</header>
+
+
+<main>
+<section id=orthography>
+</section>
+
+<section id=before>
+   <div>
+     <input checked name=from type=radio value=PDLMA  id=fromPDLMA>  <label for=fromPDLMA>PDLMA</label>       
+     <input         name=from type=radio value=practical id=fromPractical> <label for=fromPractical>Practical</label>          
+     <input         name=from type=radio value=ipa       id=fromIPA>       <label for=fromIPA>IPA</label>  
+   </div>
+  <textarea spellcheck=false></textarea>
+</section>
+
+<section id=after>
+   <div>
+     <input         name=to type=radio value=PDLMA  id=toPDLMA>  <label for=toPDLMA>PDLMA</label>       
+     <input checked name=to type=radio value=practical id=toPractical> <label for=toPractical>Practical</label>          
+     <input         name=to type=radio value=ipa       id=toIPA>       <label for=toIPA>IPA</label>             
+   </div>
+  <textarea spellcheck=false></textarea>
+</section>
+
+</main>
+
+<script src=js/digitalLinguistics.js> </script>
+<script src=js/chatino.js> </script>
+<script>
+
+fetch('data/chatino.json')
+  .then(d => d.json())
+  .then(data => window.chatino = new Language(data))
+  .then(language => { renderTable(language); return language })
+  .catch( e => console.log(e))
+
+</script>
+
+</body>
+</html>
+
