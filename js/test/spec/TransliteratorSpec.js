@@ -4,7 +4,7 @@ describe('Transliterator', function(){
       this.t = new Transliterator(rules);
     }
 
-    var url = 'http://glyph.local/~pat/Transliterate/transliterate/js/chatino-alphabet.json';
+    var url = '../chatino-alphabet.json';
     
     fetch(url)
       .then(r => r.json())
