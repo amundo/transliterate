@@ -2,9 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>transliteration in javascript</title>
+  <title>Transliterate Chatino</title>
+<style>
+* { 
+  font-family: 'serif';
+}
+
+body {
+  display:flex;
+  flex-direction:column;
+  height:80vh;
+}
+
+header { 
+  display:flex;
+  border-bottom: 1px solid gray;
+  justify-content: center;
+  align-items:baseline;
+}
+
+header h1 { 
+  text-align:center;
+  font-size: 1rem;
+  flex:1;
+}
+
+header span { 
+  font-size: 1rem;
+  align-self:baseline;
+}
+
+main { 
+  display:flex;
+  height:100%;
+  min-height: 80vh;
+}
+
+main > section#before, 
+main > section#after {
+  flex: 1;
+  padding: 10px;
+  flex-direction:column;
+  display:flex;
+ 
+}
+
+main > section textarea { 
+  padding: 1em;
+  flex: 1;
+  font-size: x-large;
+}
+
+table { 
+  border-collapse: collapse;
+  margin: 0 auto;
+  -moz-column-count: 3;
+}
+
+tbody tr:nth-child(odd) {
+   background-color: #efefef;
+}
+
+td { 
+  border: 1px solid #ddd;
+  text-align:center;
+}
+
+th { 
+  
+}
+
+section#after 
+</style>
+<script src=fetch.js></script>
+<script src=digitalLinguistics.js></script>
 </head>
+
 <body>
-  <h1>transliteration in javascript</h1>
+<header>
+<h1>Chatino Transliteration</h1>
+<span>Last updated: <date></date></span>
+</header>
+
+
+<main>
+<section id=orthography>
+</section>
+
+<section id=before>
+   <div>
+     <input checked name=from type=radio value=PDLMA  id=fromPDLMA>  <label for=fromPDLMA>PDLMA</label>       
+     <input         name=from type=radio value=practical id=fromPractical> <label for=fromPractical>Practical</label>          
+     <!-- <input         name=from type=radio value=ipa       id=fromIPA>       <label for=fromIPA>IPA</label>             --> 
+   </div>
+  <textarea spellcheck=false></textarea>
+</section>
+
+<section id=after>
+   <div>
+     <input         name=to type=radio value=PDLMA  id=toPDLMA>  <label for=toPDLMA>PDLMA</label>       
+     <input checked name=to type=radio value=practical id=toPractical> <label for=toPractical>Practical</label>          
+     <!-- <input         name=to type=radio value=ipa       id=toIPA>       <label for=toIPA>IPA</label>             --> 
+   </div>
+  <textarea spellcheck=false></textarea>
+</section>
+
+</main>
+
+<script src=chatino.js> </script>
+<script>
+
+fetch('data/chatino.json')
+  .then(d => d.json())
+  .then(data => window.chatino = new Language(data))
+  .then(language => { renderTable(language); return language })
+  .catch( e => console.log(e))
+
+</script>
+
 </body>
 </html>
+
