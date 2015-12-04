@@ -49,9 +49,8 @@ var renderTable = function (language) {
   language.alphabet = language.alphabet.sort(function (a, b) {
     return cmp.compare(a.practical, b.practical);
   });
-  // language.alphabet.forEach(function (c) {
-  //   delete c.ipa;
-  // });
-  //document.querySelector("#orthography").appendChild(json2table(language.alphabet, ["PDLMA", "practical"]));
-  document.querySelector("#orthography").appendChild(json2table(language.alphabet));
+  language.alphabet.forEach(function (c) {
+    delete c.ipa;
+  });
+  document.querySelector("#orthography").appendChild(json2table(language.alphabet, ["PDLMA", "practical"]));
 };

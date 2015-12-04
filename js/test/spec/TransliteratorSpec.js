@@ -76,6 +76,18 @@ ki_kwa!& nt-u_-sa_7a!& kwe_ya!7`
       var practical2 = this.t.transliterate('PDLMA', 'practical', PDLMA );
       expect(practical).toEqual(practical2);
     })
+
+    it('reversible PDLMA => ipa => PDLMA', function(){
+      var pdlma = 'kwe_ya!7';
+
+      var ridiculous = this.t.transliterate('PDLMA', 'ipa',  
+        this.t.transliterate('ipa', 'PDLMA', 
+          pdlma 
+        )
+      );
+
+      expect(ridiculous).toEqual(pdlma);
+    })
    
   })
 

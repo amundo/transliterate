@@ -42,12 +42,16 @@ var Transliterator = (function () {
           return feeding || a[0].length < b[0].length ? -1 : 1;
         });
 
-        rules.forEach(function (rule) {
+        rules.forEach(function (rule, i) {
           var before = _this.escape(rule[0]),
               after = _this.escape(rule[1]),
               re = new RegExp(before, "g");
 
+          var wastext = text;
           text = text.replace(re, rule[1]);
+          if (before.match(re) && ["sh", "j", "x", "y"].indexOf(before) > -1 || ["sh", "j", "x", "y"].indexOf(after) > -1 && wastext != text) {
+            console.log("[" + wastext + "→" + text + "] " + i + ": «" + before + "→" + after + "» (" + from + "»" + to + ") ");
+          }
         });
 
         return text;
@@ -57,3 +61,5 @@ var Transliterator = (function () {
 
   return Transliterator;
 })();
+
+//console.log('\n');
