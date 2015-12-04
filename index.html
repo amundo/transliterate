@@ -45,9 +45,9 @@
 
 fetch('data/chatino.json')
   .then(d => d.json())
-  .then(data => window.chatino = new Language(data))
-  .then(language => { renderTable(language); return language })
-  .catch( e => console.log(e))
+  .then(data => data.alphabet)
+  .then(renderTable)
+  .catch(e => console.log(e))
 
 </script>
 
