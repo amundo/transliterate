@@ -35,13 +35,13 @@ var Transliterator = (function () {
         rules.sort(function (a, b) {
 
           if (a[1] == b[0]) {
+            // feeding
             return -1;
-          }; // feeding
-
+          }
           if (a[0].length > b[0].length) {
+            // longest input not first
             return -1;
-          };
-
+          }
           return 1;
         });
 
@@ -50,7 +50,6 @@ var Transliterator = (function () {
               after = _this.escape(rule[1]),
               re = new RegExp(before, "g");
 
-          console.log("" + before + " > " + after);
           text = text.replace(re, rule[1]);
         });
 

@@ -19,16 +19,15 @@ class Transliterator {
 
     rules.sort((a,b) => {
 
-      if(a[1] == b[0]){ 
-        return -1 // feeding
-      } else if(a[0].length > b[0].length){ 
+      if(a[1] == b[0]){  // feeding
         return -1 
-      } else if { 
-        return 1;
-      };
+      }
+      if(a[0].length > b[0].length){  // longest input not first
+        return -1 
+      }
+      return 1;
 
     })
-
 
     rules.forEach((rule,i) => {
       var 
