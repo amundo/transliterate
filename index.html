@@ -39,13 +39,19 @@
 
 </main>
 
-<script src=js/digitalLinguistics.js> </script>
+<!-- script src=js/digitalLinguistics.js> </script -->
+
+<script src=js/Transliterator.js> </script>
 <script src=js/transliterate.js> </script>
 <script>
+
+var upJSON = json => JSON.parse(JSON.stringify(json).toUpperCase())
+var logPass = data => { console.log(data); return data}
 
 fetch('data/chatino.json')
   .then(d => d.json())
   .then(data => data.alphabet)
+  .then(alphabet => { window.transliterator = new Transliterator(alphabet); return alphabet })
   .then(renderTable)
   .catch(e => console.log(e))
 

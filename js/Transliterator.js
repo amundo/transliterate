@@ -21,35 +21,37 @@ var Transliterator = (function () {
         return raw.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
       }
     },
+    validate: {
+      value: function validate() {}
+    },
     transliterate: {
       value: function transliterate(from, to, text) {
         var _this = this;
 
-        if (!this.alphabet) {
-          return text;
-        }var rules = this.alphabet.map(function (grapheme) {
+        var rules = this.alphabet.map(function (grapheme) {
           return [grapheme[from], grapheme[to]];
         });
 
-        //console.log(rules.map(r => `${r[0]} ${r[1]}`).join('\n'));
-
         rules.sort(function (a, b) {
-          var feeding = function (a, b) {
-            return a[1] == b[0];
+
+          if (a[1] == b[0]) {
+            return -1;
+          }; // feeding
+
+          if (a[0].length > b[0].length) {
+            return -1;
           };
-          return feeding || a[0].length < b[0].length ? -1 : 1;
+
+          return 1;
         });
 
         rules.forEach(function (rule, i) {
           var before = _this.escape(rule[0]),
               after = _this.escape(rule[1]),
-              re = new RegExp(before, "g"),
-              wastext = text;
+              re = new RegExp(before, "g");
 
+          console.log("" + before + " > " + after);
           text = text.replace(re, rule[1]);
-          if (before.match(re) && wastext != text && (["sh", "j", "x", "y"].indexOf(before) > -1 || ["sh", "j", "x", "y"].indexOf(after) > -1)) {
-            console.log("[" + wastext + "→" + text + "] " + i + ": «" + before + "→" + after + "» (" + from + "»" + to + ")");
-          }
         });
 
         return text;
@@ -60,4 +62,4 @@ var Transliterator = (function () {
   return Transliterator;
 })();
 
-//console.log('\n');
+// check rules

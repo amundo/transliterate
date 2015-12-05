@@ -7,7 +7,7 @@ var runTransliteration = () => {
   var from = document.body.querySelector('#before input[type="radio"]:checked').value;
   var to = document.body.querySelector('#after input[type="radio"]:checked').value;
 
-  var transliterated = chatino.transliterate(from, to, before.value);
+  var transliterated = transliterator.transliterate(from, to, before.value);
   after.value = transliterated;
 
 }

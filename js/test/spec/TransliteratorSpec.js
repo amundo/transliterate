@@ -1,17 +1,20 @@
+var logPass = data => {console.log(data); return data}
+
 describe('Transliterator', function(){
   beforeEach(function(done){
     var init = rules => {
       this.t = new Transliterator(rules);
     }
 
-    var url = '../chatino-alphabet.json';
+    var url = '../../data/chatino.json';
     
     fetch(url)
       .then(r => r.json())
+      .then(data => data.alphabet)
+      .then(alphabet => { window.alphabet = alphabet; return alphabet })
       .then(init)
       .then(done)
       .catch(e => console.log(e))
-
 
   })
 
@@ -24,6 +27,7 @@ describe('Transliterator', function(){
     it('has a transliterate method', function(){
       expect(this.t.transliterate).not.toBeNull();
     })
+
   })
 
   describe('Chatino rules', function(){
@@ -70,6 +74,21 @@ ki_kwa!& nt-u_-sa_7a!& kwe_ya!7`
       expect(this.t.transliterate('PDLMA', 'practical', 'sh' )).toBe('x');
     })
 
+    it('PDLMA[7] =>  ipa[ʔ]', function(){
+      expect(this.t.transliterate('PDLMA', 'ipa', '7' )).toBe('ʔ');
+    })
+
+    it('ipa[ʔ] =>  PDLMA[7]', function(){
+      expect(this.t.transliterate('ipa', 'PDLMA', 'ʔ' )).toBe('7');
+    })
+
+    it('ipa[ʔ] =>  PDLMA[7] => ipa[ʔ]', function(){
+      var seven = this.t.transliterate('ipa', 'pdlma', 'ʔ');
+      var glottal = this.t.transliterate('pdlma', 'ipa', seven );
+
+      expect(glottal).toBe('ʔ');
+    })
+
     it('reversible PDLMA, practical', function(){
       var practical = this.t.transliterate('PDLMA', 'practical', this.sample );
       var PDLMA = this.t.transliterate('practical', 'PDLMA', practical );
@@ -77,7 +96,7 @@ ki_kwa!& nt-u_-sa_7a!& kwe_ya!7`
       expect(practical).toEqual(practical2);
     })
 
-    it('reversible PDLMA => ipa => PDLMA', function(){
+    xit('reversible PDLMA => ipa => PDLMA', function(){
       var pdlma = 'kwe_ya!7';
 
       var ridiculous = this.t.transliterate('PDLMA', 'ipa',  
