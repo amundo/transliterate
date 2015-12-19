@@ -4,12 +4,6 @@ class Transliterator {
     this.alphabet = alphabet;
     this.orthographies = orthographies || Object.keys(this.alphabet[0]);
   }
-
-  // if a string to be transliterated contains any characters which have special
-  // meaning in regular expressions, escape them
-  escape(raw){
-    return raw.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
-  }
   
   validate(){
     // check rules
@@ -32,8 +26,8 @@ class Transliterator {
 
     rules.forEach((rule,i) => {
       var 
-         before = String.raw`${rule[0]}`,
-         after = String.raw`${rule[1]}`;
+         before = rule[0],
+         after = rule[1];
 
       text = text.replace(before, after);
     })
