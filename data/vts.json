@@ -1,0 +1,362 @@
+{
+"metadata": {
+"codes": {
+      "iso639-3": "wtf",
+      "glottolog": "wtf"
+    },
+    "names": {
+      "en": "San Sebastián del Monte Mixtec",
+      "es": "Mixteco de San Sebastián del Monte"
+    },
+    "notes": [
+      "This is a Digital Linguistics (DLx) Language description for San Sebastián del Monte Mixtec. In cases where the Ve’e Tu’un Savi orthography does not contain a character corresponding to a phoneme representable by the Josserand or IPA orthographies, the IPA is used as a default." 
+    ]
+  },
+  "alphabet" : 
+
+[
+  {
+    "josserand": "a", 
+    "vts": "a", 
+    "ipa": "a", 
+    "common": "a", 
+    "ez": "a"
+  }, 
+  {
+    "josserand": "b\u0335", 
+    "vts": "b", 
+    "ipa": "\u03b2", 
+    "common": "b", 
+    "ez": "B"
+  }, 
+  {
+    "josserand": "d\u0335", 
+    "vts": "d", 
+    "ipa": "\u00f0", 
+    "common": "d", 
+    "ez": "D"
+  }, 
+  {
+    "josserand": "d\u0335\u02b8", 
+    "vts": "dy", 
+    "ipa": "\u00f0\u02b2", 
+    "common": "dy", 
+    "ez": "DY"
+  }, 
+  {
+    "josserand": "e", 
+    "vts": "e", 
+    "ipa": "e", 
+    "common": "e", 
+    "ez": "e"
+  }, 
+  {
+    "josserand": "f", 
+    "vts": "f", 
+    "ipa": "f", 
+    "common": "f", 
+    "ez": "f"
+  }, 
+  {
+    "josserand": "h", 
+    "vts": "h", 
+    "ipa": "h", 
+    "common": "h", 
+    "ez": "h"
+  }, 
+  {
+    "josserand": "h\u02b7", 
+    "vts": "hw", 
+    "ipa": "h\u02b7", 
+    "common": "hw", 
+    "ez": "hW"
+  }, 
+  {
+    "josserand": "i", 
+    "vts": "i", 
+    "ipa": "i", 
+    "common": "i", 
+    "ez": "i"
+  }, 
+  {
+    "josserand": "k", 
+    "vts": "k", 
+    "ipa": "k", 
+    "common": "k", 
+    "ez": "k"
+  }, 
+  {
+    "josserand": "k\u02b7", 
+    "vts": "kw", 
+    "ipa": "k\u02b7", 
+    "common": "kw", 
+    "ez": "kW"
+  }, 
+  {
+    "josserand": "k\u02b8", 
+    "vts": "ky", 
+    "ipa": "k\u02b8", 
+    "common": "ky", 
+    "ez": "kY"
+  }, 
+  {
+    "josserand": "l", 
+    "vts": "l", 
+    "ipa": "l", 
+    "common": "l", 
+    "ez": "l"
+  }, 
+  {
+    "josserand": "m", 
+    "vts": "m", 
+    "ipa": "m", 
+    "common": "m", 
+    "ez": "m"
+  }, 
+  {
+    "josserand": "n", 
+    "vts": "n", 
+    "ipa": "n", 
+    "common": "n", 
+    "ez": "n"
+  }, 
+  {
+    "josserand": "o", 
+    "vts": "o", 
+    "ipa": "o", 
+    "common": "o", 
+    "ez": "o"
+  }, 
+  {
+    "josserand": "p", 
+    "vts": "p", 
+    "ipa": "p", 
+    "common": "p", 
+    "ez": "p"
+  }, 
+  {
+    "josserand": "r", 
+    "vts": "r", 
+    "ipa": "\u027e", 
+    "common": "r", 
+    "ez": "r"
+  }, 
+  {
+    "josserand": "r\u0303", 
+    "vts": "rr", 
+    "ipa": "r", 
+    "common": "rr", 
+    "ez": "R"
+  }, 
+  {
+    "josserand": "s", 
+    "vts": "s", 
+    "ipa": "s", 
+    "common": "s", 
+    "ez": "s"
+  }, 
+  {
+    "josserand": "s\u02b8", 
+    "vts": "sy", 
+    "ipa": "s\u02b2", 
+    "common": "sy", 
+    "ez": "sY"
+  }, 
+  {
+    "josserand": "t", 
+    "vts": "t", 
+    "ipa": "t", 
+    "common": "t", 
+    "ez": "t"
+  }, 
+  {
+    "josserand": "t\u02b8", 
+    "vts": "ti", 
+    "ipa": "t\u02b2", 
+    "common": "ti", 
+    "ez": "tY"
+  }, 
+  {
+    "josserand": "u", 
+    "vts": "u", 
+    "ipa": "u", 
+    "common": "u", 
+    "ez": "u"
+  }, 
+  {
+    "josserand": "v", 
+    "vts": "v", 
+    "ipa": "v", 
+    "common": "v", 
+    "ez": "v"
+  }, 
+  {
+    "josserand": "w", 
+    "vts": "w", 
+    "ipa": "w", 
+    "common": "w", 
+    "ez": "w"
+  }, 
+  {
+    "josserand": "x", 
+    "vts": "x", 
+    "ipa": "x", 
+    "common": "x", 
+    "ez": "x"
+  }, 
+  {
+    "josserand": "y", 
+    "vts": "j", 
+    "ipa": "j", 
+    "common": "j", 
+    "ez": "y"
+  }, 
+  {
+    "josserand": "z", 
+    "vts": "z", 
+    "ipa": "z", 
+    "common": "z", 
+    "ez": "z"
+  }, 
+  {
+    "josserand": "\u00a2", 
+    "vts": "ts", 
+    "ipa": "t\u0361s", 
+    "common": "tz", 
+    "ez": "ts"
+  }, 
+  {
+    "josserand": "\u00f1", 
+    "vts": "\u00f1", 
+    "ipa": "\u0272", 
+    "common": "\u00f1", 
+    "ez": "\u00f1"
+  }, 
+  {
+    "josserand": "\u00fc", 
+    "vts": "\u00fc", 
+    "ipa": "y", 
+    "common": "\u00fc", 
+    "ez": "\u00fc"
+  }, 
+  {
+    "josserand": "\u010d", 
+    "vts": "ty", 
+    "ipa": "t\u0361\u0283", 
+    "common": "ch", 
+    "ez": "C"
+  }, 
+  {
+    "josserand": "\u014b", 
+    "vts": "\u014b", 
+    "ipa": "\u014b", 
+    "common": "ng", 
+    "ez": "N"
+  }, 
+  {
+    "josserand": "\u0161", 
+    "vts": "x", 
+    "ipa": "\u0283", 
+    "common": "sh", 
+    "ez": "S"
+  }, 
+  {
+    "josserand": "\u017e", 
+    "vts": "y", 
+    "ipa": "\u0292", 
+    "common": "zh", 
+    "ez": "Z"
+  }, 
+  {
+    "josserand": "\u01e5", 
+    "vts": "g", 
+    "ipa": "\u0263", 
+    "common": "g", 
+    "ez": "G"
+  }, 
+  {
+    "josserand": "\u0268", 
+    "vts": "\u0268", 
+    "ipa": "\u0268", 
+    "common": "\u0268", 
+    "ez": "1"
+  }, 
+  {
+    "josserand": "\u0294", 
+    "vts": "\u2019", 
+    "ipa": "\u0294", 
+    "common": "\u2019", 
+    "ez": "?"
+  }, 
+  {
+    "josserand": "\u03b8", 
+    "vts": "\u03b8", 
+    "ipa": "\u03b8", 
+    "common": "th", 
+    "ez": "T"
+  }, 
+  {
+    "josserand": "\u1d7d", 
+    "vts": "\u0278", 
+    "ipa": "\u0278", 
+    "common": "ph", 
+    "ez": "P"
+  }, 
+  {
+    "josserand": "\u1d50b", 
+    "vts": "mb", 
+    "ipa": "\u1d50b", 
+    "common": "mb", 
+    "ez": "Mb"
+  }, 
+  {
+    "josserand": "\u207fd", 
+    "vts": "nd", 
+    "ipa": "\u207fd", 
+    "common": "nd", 
+    "ez": "Nd"
+  }, 
+  {
+    "josserand": "\u207fd\u02b8", 
+    "vts": "ndy", 
+    "ipa": "\u207fd\u02b2", 
+    "common": "ndy", 
+    "ez": "NdY"
+  }, 
+  {
+    "josserand": "\u207fg", 
+    "vts": "ng", 
+    "ipa": "\u207fg", 
+    "common": "ng", 
+    "ez": "Ng"
+  }, 
+  {
+    "josserand": "\u207fg\u02b7", 
+    "vts": "ngw", 
+    "ipa": "\u207fg\u02b7", 
+    "common": "ngw", 
+    "ez": "NgW"
+  }, 
+  {
+    "josserand": "\u207fz", 
+    "vts": "nz", 
+    "ipa": "\u207fz", 
+    "common": "nz", 
+    "ez": "Nz"
+  }, 
+  {
+    "josserand": "\u1e63\u030c", 
+    "vts": "\u0282\u030c", 
+    "ipa": "\u0282\u030c", 
+    "common": "shr", 
+    "ez": "SR"
+  }, 
+  {
+    "josserand": "\u207f\u01f0", 
+    "vts": "ndy", 
+    "ipa": "\u207fd\u0361\u0292", 
+    "common": "ndy", 
+    "ez": "NJ"
+  }
+]
+}

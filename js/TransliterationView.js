@@ -139,6 +139,51 @@ var TransliterationEditorView = (function () {
   return TransliterationEditorView;
 })();
 
+var TransliterationInputView = (function () {
+  function TransliterationInputView(transliterator, input) {
+    _classCallCheck(this, TransliterationInputView);
+
+    this.input = input;
+    this.transliterator = transliterator;
+    this.listen();
+  }
+
+  _createClass(TransliterationInputView, {
+    render: {
+      value: function render() {
+        var _this = this;
+
+        [].concat(_toConsumableArray(document.querySelectorAll("p.transliterated"))).forEach(function (p) {
+          p.remove();
+        });
+
+        var orthographies = this.transliterator.orthographies;
+
+        orthographies.forEach(function (o) {
+          _this.input.dataset[o] = _this.transliterator.transliterate(_this.input.lang, o, _this.input.value);
+        });
+
+        orthographies.forEach(function (o) {
+          if (o != _this.input.lang) {
+            _this.input.insertAdjacentHTML("afterend", "<p class=transliterated lang=\"" + o + "\"><small>" + o + "</small> " + _this.input.dataset[o] + "</p>");
+          }
+        });
+      }
+    },
+    listen: {
+      value: function listen() {
+        var _this = this;
+
+        this.input.addEventListener("keyup", function (ev) {
+          return _this.render();
+        });
+      }
+    }
+  });
+
+  return TransliterationInputView;
+})();
+
 var TransliterationLayout = (function () {
   function TransliterationLayout(transliterator) {
     _classCallCheck(this, TransliterationLayout);

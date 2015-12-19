@@ -113,6 +113,38 @@ class TransliterationEditorView  {
   }
 }
 
+class TransliterationInputView {
+  constructor(transliterator, input){
+    this.input = input;
+    this.transliterator = transliterator;
+    this.listen();
+  } 
+
+  render(){
+    [... document.querySelectorAll('p.transliterated')].forEach(p => {
+      p.remove();
+    })
+
+    var orthographies = this.transliterator.orthographies;
+
+    orthographies.forEach(o => {
+      this.input.dataset[o] = this.transliterator.transliterate(this.input.lang, o, this.input.value)
+    })
+   
+    orthographies.forEach(o => {
+      if(o != this.input.lang){
+        this.input.insertAdjacentHTML('afterend', `<p class=transliterated lang="${o}"><small>${o}</small> ${this.input.dataset[o]}</p>`)
+      }
+    })
+
+  }
+
+  listen(){
+    this.input.addEventListener('keyup', ev => this.render());
+  }
+
+}
+
 class TransliterationLayout {
   constructor(transliterator){
     this.transliterator = transliterator;

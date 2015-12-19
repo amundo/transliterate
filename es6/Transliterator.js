@@ -1,5 +1,5 @@
 
-class Transliterator { 
+class XTransliterator { 
   constructor(alphabet, orthographies){
     this.alphabet = alphabet;
     this.orthographies = orthographies || Object.keys(this.alphabet[0]);
@@ -74,6 +74,53 @@ var transliterate = (rules, from, to, text) =>  {
     }
     return transliterated;
   }, '')
+}
+
+
+class Transliterator {
+
+  constructor(alphabet, orthographies){
+    this.alphabet = alphabet;
+    this.orthographies = orthographies || Object.keys(this.alphabet[0]);
+  }
+
+  escape(raw){
+    return raw.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
+  }
+  
+  descendingLength(a,b){
+    return a.length < b.length
+  }
+
+  phonemize(phonemes, text){
+    var phonemes = phonemes.sort(descendingLength);
+    phonemes = phonemes.map(escape);
+    var pattern = `(${phonemes.join('|')})`;
+    var splitter = new RegExp(pattern, 'g');
+  
+    return text.split(splitter).filter(x => x); 
+  }
+
+  transliterate(from, to, text){
+    var rules = this.alphabet;
+    var substitutions = rules.reduce((mapping, rule) => {
+      mapping[rule[from]] = rule[to];  
+      return mapping;
+    }, {})
+  
+    var phonemes = rules.map(rule => rule[from]);
+    var phonemized = this.phonemize(phonemes, text);
+  
+    return phonemized.reduce((transliterated, phoneme) => {
+      if(phoneme in substitutions){
+        transliterated += substitutions[phoneme];
+      } else { 
+        transliterated += phoneme;
+      }
+      return transliterated;
+    }, '')
+  }
+
 }
 
 

@@ -98,7 +98,7 @@ th {
 
 window.app = {};
 
-fetch('../../data/chatino.json')
+fetch('../../data/vts.json')
   .then(response => response.json())
   .then(language => { app.t = new Transliterator(language.alphabet) })
   .then(() => {   

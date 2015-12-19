@@ -4,15 +4,15 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
-var Transliterator = (function () {
-  function Transliterator(alphabet, orthographies) {
-    _classCallCheck(this, Transliterator);
+var XTransliterator = (function () {
+  function XTransliterator(alphabet, orthographies) {
+    _classCallCheck(this, XTransliterator);
 
     this.alphabet = alphabet;
     this.orthographies = orthographies || Object.keys(this.alphabet[0]);
   }
 
-  _createClass(Transliterator, {
+  _createClass(XTransliterator, {
     validate: {
       value: function validate() {}
     },
@@ -51,7 +51,7 @@ var Transliterator = (function () {
     }
   });
 
-  return Transliterator;
+  return XTransliterator;
 })();
 
 var escape = function (raw) {
@@ -93,5 +93,64 @@ var transliterate = function (rules, from, to, text) {
     return transliterated;
   }, "");
 };
+
+var Transliterator = (function () {
+  function Transliterator(alphabet, orthographies) {
+    _classCallCheck(this, Transliterator);
+
+    this.alphabet = alphabet;
+    this.orthographies = orthographies || Object.keys(this.alphabet[0]);
+  }
+
+  _createClass(Transliterator, {
+    escape: {
+      value: function escape(raw) {
+        return raw.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
+      }
+    },
+    descendingLength: {
+      value: function descendingLength(a, b) {
+        return a.length < b.length;
+      }
+    },
+    phonemize: {
+      value: function phonemize(phonemes, text) {
+        var phonemes = phonemes.sort(descendingLength);
+        phonemes = phonemes.map(escape);
+        var pattern = "(" + phonemes.join("|") + ")";
+        var splitter = new RegExp(pattern, "g");
+
+        return text.split(splitter).filter(function (x) {
+          return x;
+        });
+      }
+    },
+    transliterate: {
+      value: function transliterate(from, to, text) {
+        var rules = this.alphabet;
+        var substitutions = rules.reduce(function (mapping, rule) {
+          mapping[rule[from]] = rule[to];
+          return mapping;
+        }, {});
+
+        var phonemes = rules.map(function (rule) {
+          return rule[from];
+        });
+        var phonemized = this.phonemize(phonemes, text);
+
+        return phonemized.reduce(function (transliterated, phoneme) {
+          if (phoneme in substitutions) {
+            transliterated += substitutions[phoneme];
+          } else {
+            transliterated += phoneme;
+          }
+          return transliterated;
+        }, "");
+      }
+    }
+  });
+
+  return Transliterator;
+})();
 
 // check rules
