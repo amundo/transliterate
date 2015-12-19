@@ -25,9 +25,11 @@ class TransliterationTableView  {
     return table;
   }
 
-  render(alphabet, columns){ 
+  render(columns){ 
 
     var cmp = new Intl.Collator('es', { sensitivity: 'base'});
+    var alphabet = this.transliterator.alphabet;
+    var columns = columns || this.transliterator.orthographies;
     alphabet = alphabet.sort((a,b) => cmp.compare(a.practical, b.practical));
 
     listen();
@@ -76,6 +78,11 @@ class TransliterationEditorView  {
     var container = document.createElement('section');
     container.classList.add('transliterationEditor');
     container.innerHTML = this.template();
+    var a = container.querySelector('.before input[name="from"]:last-child');
+    var b = container.querySelector('.after  input[name="to"]:first-child');
+
+    container.querySelector('.before label:first-child').querySelector('input').checked = true;
+    container.querySelector('.after label:last-child').querySelector('input').checked = true;
     this.el = container;
     this.listen();
     return this.el;
@@ -107,18 +114,20 @@ class TransliterationEditorView  {
   }
 }
 
-class TransliteratorLayout {
+class TransliterationLayout {
   constructor(transliterator){
     this.transliterator = transliterator;
  
-    this.table = new TransliterationTableView(this.transliterator);
+    //this.table = new TransliterationTableView(this.transliterator);
     this.editor = new TransliterationEditorView(this.transliterator);
+
+    this.container = document.createElement('section');
+    this.container.classList.add('transliterationLayout')
   }
 
-  template(){
-  }
- 
+
   render(){
-    return this.template()
+    this.container.appendChild(this.editor.render());
+    return this.container;
   }
 }

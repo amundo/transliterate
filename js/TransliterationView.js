@@ -40,9 +40,11 @@ var TransliterationTableView = (function () {
       }
     },
     render: {
-      value: function render(alphabet, columns) {
+      value: function render(columns) {
 
         var cmp = new Intl.Collator("es", { sensitivity: "base" });
+        var alphabet = this.transliterator.alphabet;
+        var columns = columns || this.transliterator.orthographies;
         alphabet = alphabet.sort(function (a, b) {
           return cmp.compare(a.practical, b.practical);
         });
@@ -138,9 +140,9 @@ var TransliterationEditorView = (function () {
   return TransliterationEditorView;
 })();
 
-var TransliteratorLayout = (function () {
-  function TransliteratorLayout(transliterator) {
-    _classCallCheck(this, TransliteratorLayout);
+var TransliterationLayout = (function () {
+  function TransliterationLayout(transliterator) {
+    _classCallCheck(this, TransliterationLayout);
 
     this.transliterator = transliterator;
 
@@ -148,10 +150,10 @@ var TransliteratorLayout = (function () {
     this.editor = new TransliterationEditorView(this.transliterator);
 
     this.container = document.createElement("section");
-    this.container.classList.add("transliteratorLayout");
+    this.container.classList.add("transliterationLayout");
   }
 
-  _createClass(TransliteratorLayout, {
+  _createClass(TransliterationLayout, {
     render: {
       value: function render() {
         this.container.appendChild(this.editor.render());
@@ -160,5 +162,5 @@ var TransliteratorLayout = (function () {
     }
   });
 
-  return TransliteratorLayout;
+  return TransliterationLayout;
 })();
