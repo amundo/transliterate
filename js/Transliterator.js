@@ -39,6 +39,10 @@ var Transliterator = (function () {
           var before = rule[0],
               after = rule[1];
 
+          if (text.length && text.indexOf(before) > -1) {
+            console.log("" + before + " > " + after);
+          };
+
           text = text.replace(before, after);
         });
 
@@ -49,5 +53,45 @@ var Transliterator = (function () {
 
   return Transliterator;
 })();
+
+var escape = function (raw) {
+  return raw.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
+};
+
+var descendingLength = function (a, b) {
+  return a.length < b.length;
+};
+
+var phonemize = function (phonemes, text) {
+  var phonemes = phonemes.sort(descendingLength);
+  phonemes = phonemes.map(escape);
+  var pattern = "(" + phonemes.join("|") + ")";
+  var splitter = new RegExp(pattern, "g");
+
+  return text.split(splitter).filter(function (x) {
+    return x;
+  });
+};
+
+var transliterate = function (rules, from, to, text) {
+  var substitutions = rules.reduce(function (mapping, rule) {
+    mapping[rule[from]] = rule[to];
+    return mapping;
+  }, {});
+
+  var phonemes = rules.map(function (rule) {
+    return rule[from];
+  });
+  var phonemized = phonemize(phonemes, text);
+
+  return phonemized.reduce(function (transliterated, phoneme) {
+    if (phoneme in substitutions) {
+      transliterated += substitutions[phoneme];
+    } else {
+      transliterated += phoneme;
+    }
+    return transliterated;
+  }, "");
+};
 
 // check rules

@@ -29,6 +29,8 @@ class Transliterator {
          before = rule[0],
          after = rule[1];
 
+      if(text.length && text.indexOf(before) > -1 ){ console.log(`${before} > ${after}`) };
+
       text = text.replace(before, after);
     })
 
@@ -36,4 +38,43 @@ class Transliterator {
 
   }
 }
+
+var escape = (raw) => {
+  return raw.replace(/([.*+?^${}()|\[\]\/\\])/g, "\\$1");
+}
+
+var descendingLength = (a,b) => {
+  return a.length < b.length
+}
+
+var phonemize = (phonemes, text) => {
+  var phonemes = phonemes.sort(descendingLength);
+  phonemes = phonemes.map(escape);
+  var pattern = `(${phonemes.join('|')})`;
+  var splitter = new RegExp(pattern, 'g');
+
+  return text.split(splitter).filter(x => x); 
+}
+
+var transliterate = (rules, from, to, text) =>  {
+  var substitutions = rules.reduce((mapping, rule) => {
+    mapping[rule[from]] = rule[to];  
+    return mapping;
+  }, {})
+
+
+  var phonemes = rules.map(rule => rule[from]);
+  var phonemized = phonemize(phonemes, text);
+
+  return phonemized.reduce((transliterated, phoneme) => {
+    if(phoneme in substitutions){
+      transliterated += substitutions[phoneme];
+    } else { 
+      transliterated += phoneme;
+    }
+    return transliterated;
+  }, '')
+}
+
+
 

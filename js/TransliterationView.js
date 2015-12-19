@@ -105,7 +105,6 @@ var TransliterationEditorView = (function () {
         var from = this.el.querySelector(".before input[type=\"radio\"]:checked").value;
         var to = this.el.querySelector(".after  input[type=\"radio\"]:checked").value;
         var transliterated = this.transliterator.transliterate(from, to, before.value);
-        console.log([from, to, before.value]);
         after.value = transliterated;
       }
     },
