@@ -86,8 +86,10 @@ class TransliterationEditorView  {
     var after = this.el.querySelector('.after textarea');
     var to   = this.el.querySelector('.before input[type="radio"]:checked').value;
     var from = this.el.querySelector('.after  input[type="radio"]:checked').value;
+console.log([to, from, before.value]);
+console.log(`transliterated: ${this.transliterator.transliterate([to, from, before.value])}`);
     var transliterated = this.transliterator.transliterate(from, to, before.value);
-    after.value = this.transliterator.transliterate('sh', 'ipa', 'sh');
+    after.value = transliterated;
   }
 
   listen(){
@@ -100,8 +102,8 @@ class TransliterationEditorView  {
     })
 
     radios.forEach(radio => {
-      radio.addEventListener('change', () => { this.runTransliteration() });
-      radio.addEventListener('keyup',  () => { this.runTransliteration() });
+      radio.addEventListener('change', ev => { this.runTransliteration() });
+      radio.addEventListener('keyup',  ev => { this.runTransliteration() });
     })
   }
 }

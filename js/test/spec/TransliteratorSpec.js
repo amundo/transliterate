@@ -83,8 +83,8 @@ ki_kwa!& nt-u_-sa_7a!& kwe_ya!7`
     })
 
     it('ipa[ʔ] =>  PDLMA[7] => ipa[ʔ]', function(){
-      var seven = this.t.transliterate('ipa', 'pdlma', 'ʔ');
-      var glottal = this.t.transliterate('pdlma', 'ipa', seven );
+      var seven = this.t.transliterate('ipa', 'PDLMA', 'ʔ');
+      var glottal = this.t.transliterate('PDLMA', 'ipa', seven );
 
       expect(glottal).toBe('ʔ');
     })
@@ -96,11 +96,11 @@ ki_kwa!& nt-u_-sa_7a!& kwe_ya!7`
       expect(practical).toEqual(practical2);
     })
 
-    xit('reversible PDLMA => ipa => PDLMA', function(){
+    it('reversible PDLMA => ipa => PDLMA', function(){
       var pdlma = 'kwe_ya!7';
 
-      var ridiculous = this.t.transliterate('PDLMA', 'ipa',  
-        this.t.transliterate('ipa', 'PDLMA', 
+      var ridiculous = this.t.transliterate('ipa', 'PDLMA',  
+        this.t.transliterate('PDLMA', 'ipa',  
           pdlma 
         )
       );

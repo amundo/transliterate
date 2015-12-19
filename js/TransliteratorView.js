@@ -97,8 +97,10 @@ var TransliterationEditorView = (function () {
         var after = this.el.querySelector(".after textarea");
         var to = this.el.querySelector(".before input[type=\"radio\"]:checked").value;
         var from = this.el.querySelector(".after  input[type=\"radio\"]:checked").value;
+        console.log([to, from, before.value]);
+        console.log("transliterated: " + this.transliterator.transliterate([to, from, before.value]));
         var transliterated = this.transliterator.transliterate(from, to, before.value);
-        after.value = this.transliterator.transliterate("sh", "ipa", "sh");
+        after.value = transliterated;
       }
     },
     listen: {
@@ -118,10 +120,10 @@ var TransliterationEditorView = (function () {
         });
 
         radios.forEach(function (radio) {
-          radio.addEventListener("change", function () {
+          radio.addEventListener("change", function (ev) {
             _this.runTransliteration();
           });
-          radio.addEventListener("keyup", function () {
+          radio.addEventListener("keyup", function (ev) {
             _this.runTransliteration();
           });
         });

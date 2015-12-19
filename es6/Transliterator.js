@@ -32,11 +32,10 @@ class Transliterator {
 
     rules.forEach((rule,i) => {
       var 
-         before = this.escape(rule[0]),
-         after = this.escape(rule[1]),
-         re = new RegExp(before, 'g');
+         before = String.raw`${rule[0]}`,
+         after = String.raw`${rule[1]}`;
 
-      text = text.replace(re, rule[1]);
+      text = text.replace(before, after);
     })
 
     return text; 
