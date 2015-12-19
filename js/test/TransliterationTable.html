@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transliteration Input Test</title>
+
+<style>
+* {
+  font-family: "Gentium Plus";
+}
+
+body { 
+  padding-left: 4em;
+}
+
+input { 
+  display:block;
+  font-size: large;
+}
+
+input::before { 
+  content: attr(lang);
+}
+
+.transliterated small { 
+  border-bottom: 1px dotted #ccc;
+  text-transform: uppercase;
+  font-size: small;
+  font-weight: normal;
+  width: 5em;
+  text-align:right;
+  padding:1em;;
+  display: inline-block;
+}
+
+.transliterated { 
+  font-weight: bold;
+  font-size: large;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<header>
+  <h1>Transliteration Input</h1>
+</header>
+
+<main>
+
+</main>
+
+<script src=../Transliterator.js> </script>
+<script src=../TransliterationView.js> </script>
+
+<script>
+
+window.app = {};
+
+fetch('../../data/vts.json')
+  .then(response => response.json())
+  .then(language => { 
+     app.t = new Transliterator(language.alphabet) 
+   })
+  .then(() => {   
+    app.tt = new TransliterationTableView(app.t);
+    document.body.querySelector('main').appendChild(app.tt.render());    
+  })
+  .catch(e => console.log(e))
+
+
+</script>
+  
+</body>
+</html>
