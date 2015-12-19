@@ -5,10 +5,11 @@ var _createClass = (function () { function defineProperties(target, props) { for
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
 var Transliterator = (function () {
-  function Transliterator(alphabet) {
+  function Transliterator(alphabet, orthographies) {
     _classCallCheck(this, Transliterator);
 
     this.alphabet = alphabet;
+    this.orthographies = orthographies || Object.keys(this.alphabet[0]);
   }
 
   _createClass(Transliterator, {

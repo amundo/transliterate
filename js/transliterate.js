@@ -1,15 +1,15 @@
 var 
   before = document.body.querySelector('#before textarea'),
-  radios = document.body.querySelectorAll('input[type="radio"]'),
-  after = document.body.querySelector('#after textarea');
+  beforeChooser = document.body.querySelector('#before div.chooser'),
+  after = document.body.querySelector('#after textarea'),
+  afterChooser = document.body.querySelector('#after div.chooser'),
+  radios = document.body.querySelectorAll('input[type="radio"]');
 
 var runTransliteration = () => {
-  var from = document.body.querySelector('#before input[type="radio"]:checked').value;
-  var to = document.body.querySelector('#after input[type="radio"]:checked').value;
-
+  var from = beforeChooser.value;
+  var to = afterChooser.value;
   var transliterated = transliterator.transliterate(from, to, before.value);
   after.value = transliterated;
-
 }
 
 var listen = () => {
@@ -23,7 +23,24 @@ var listen = () => {
   })
 }
 
-var renderTable = alphabet => { 
+var renderChooser = (orthography, fromTo) => `
+  <label>
+    <input name="from" value="${orthography}" data-${fromTo}="${orthography}" type="radio">
+    ${orthography}
+  </label>
+`
+
+var renderEditor = transliterator => {
+  
+}
+
+var renderChooser = (transliterator, fromTo) => {
+  var orthographies = Object.keys(transliterator.alphabet[0]);
+  var chooser = renderChooser(orthography, fromTo);
+  return orthographies.map(orthography => ).join('\n')
+}
+
+var renderTable = (alphabet, columns) => { 
   var json2table = (data, columns) => {
     var table = document.createElement('table');
     
@@ -51,7 +68,7 @@ var renderTable = alphabet => {
   //language.alphabet.forEach(c => { delete c.ipa })
 
   listen();
-  document.querySelector('#orthography').appendChild(json2table(alphabet));
+  document.querySelector('#orthography').appendChild(json2table(alphabet, columns));
 }
 
 

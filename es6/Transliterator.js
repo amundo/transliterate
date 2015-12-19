@@ -1,7 +1,8 @@
 
 class Transliterator { 
-  constructor(alphabet){
+  constructor(alphabet, orthographies){
     this.alphabet = alphabet;
+    this.orthographies = orthographies || Object.keys(this.alphabet[0]);
   }
 
   // if a string to be transliterated contains any characters which have special
