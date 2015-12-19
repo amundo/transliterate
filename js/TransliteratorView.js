@@ -95,11 +95,10 @@ var TransliterationEditorView = (function () {
       value: function runTransliteration() {
         var before = this.el.querySelector(".before textarea");
         var after = this.el.querySelector(".after textarea");
-        var to = this.el.querySelector(".before input[type=\"radio\"]:checked").value;
-        var from = this.el.querySelector(".after  input[type=\"radio\"]:checked").value;
-        console.log([to, from, before.value]);
-        console.log("transliterated: " + this.transliterator.transliterate([to, from, before.value]));
+        var from = this.el.querySelector(".before input[type=\"radio\"]:checked").value;
+        var to = this.el.querySelector(".after  input[type=\"radio\"]:checked").value;
         var transliterated = this.transliterator.transliterate(from, to, before.value);
+        console.log([from, to, before.value]);
         after.value = transliterated;
       }
     },
