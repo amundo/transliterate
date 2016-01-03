@@ -50,7 +50,7 @@ input::before {
 
 <main>
 
-<input lang=common>
+<input lang=ez>
 
 </main>
 
@@ -64,6 +64,9 @@ window.app = {};
 fetch('../../data/vts.json')
   .then(response => response.json())
   .then(language => { 
+     var cmp = new Intl.Collator('en', { sensitivity: 'base'});
+     //language.alphabet.sort((a,b) => cmp.compare(a.josserand, b.josserand))
+     language.alphabet.sort((a,b) => cmp.compare(a.common, b.common))
      app.t = new Transliterator(language.alphabet) 
    })
   .then(() => {   

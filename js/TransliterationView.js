@@ -149,6 +149,7 @@ var TransliterationInputView = (function () {
     _classCallCheck(this, TransliterationInputView);
 
     this.input = input;
+    this.data = {};
     this.transliterator = transliterator;
     this.listen();
   }
@@ -165,7 +166,7 @@ var TransliterationInputView = (function () {
         var orthographies = this.transliterator.orthographies;
 
         orthographies.forEach(function (o) {
-          _this.input.dataset[o] = _this.transliterator.transliterate(_this.input.lang, o, _this.input.value);
+          _this.input.dataset[o] = _this.data[o] = _this.transliterator.transliterate(_this.input.lang, o, _this.input.value);
         });
 
         orthographies.forEach(function (o) {

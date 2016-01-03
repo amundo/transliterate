@@ -116,6 +116,7 @@ class TransliterationEditorView  {
 class TransliterationInputView {
   constructor(transliterator, input){
     this.input = input;
+    this.data = {};
     this.transliterator = transliterator;
     this.listen();
   } 
@@ -128,7 +129,7 @@ class TransliterationInputView {
     var orthographies = this.transliterator.orthographies;
 
     orthographies.forEach(o => {
-      this.input.dataset[o] = this.transliterator.transliterate(this.input.lang, o, this.input.value)
+      this.input.dataset[o] = this.data[o] = this.transliterator.transliterate(this.input.lang, o, this.input.value)
     })
    
     orthographies.forEach(o => {
